@@ -1,0 +1,14 @@
+# This is a generated file; do not edit or check into version control.
+firebase_analytics=/Users/cuong-mac/.pub-cache/hosted/pub.dev/firebase_analytics-10.4.5/
+firebase_analytics_web=/Users/cuong-mac/.pub-cache/hosted/pub.dev/firebase_analytics_web-0.5.4+5/
+firebase_core=/Users/cuong-mac/.pub-cache/hosted/pub.dev/firebase_core-2.15.1/
+firebase_core_web=/Users/cuong-mac/.pub-cache/hosted/pub.dev/firebase_core_web-2.7.0/
+firebase_crashlytics=/Users/cuong-mac/.pub-cache/hosted/pub.dev/firebase_crashlytics-3.3.5/
+firebase_messaging=/Users/cuong-mac/.pub-cache/hosted/pub.dev/firebase_messaging-14.6.7/
+firebase_messaging_web=/Users/cuong-mac/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.5.6/
+flutter_local_notifications=/Users/cuong-mac/.pub-cache/hosted/pub.dev/flutter_local_notifications-15.1.1/
+fluttertoast=/Users/cuong-mac/.pub-cache/hosted/pub.dev/fluttertoast-8.2.2/
+permission_handler=/Users/cuong-mac/.pub-cache/hosted/pub.dev/permission_handler-10.4.3/
+permission_handler_android=/Users/cuong-mac/.pub-cache/hosted/pub.dev/permission_handler_android-10.3.3/
+permission_handler_apple=/Users/cuong-mac/.pub-cache/hosted/pub.dev/permission_handler_apple-9.1.4/
+permission_handler_windows=/Users/cuong-mac/.pub-cache/hosted/pub.dev/permission_handler_windows-0.1.3/
