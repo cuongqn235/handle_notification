@@ -63,7 +63,7 @@
     },
     {
       "name": "build_resolvers",
-      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/build_resolvers-2.2.1",
+      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/build_resolvers-2.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -111,7 +111,7 @@
     },
     {
       "name": "code_builder",
-      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/code_builder-4.5.0",
+      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/code_builder-4.6.0",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -135,9 +135,9 @@
     },
     {
       "name": "cupertino_icons",
-      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.5",
+      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.6",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.19"
     },
     {
       "name": "dart_style",
@@ -255,9 +255,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/flutter_lints-2.0.2",
+      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.19"
     },
     {
       "name": "flutter_local_notifications",
@@ -411,13 +411,13 @@
     },
     {
       "name": "permission_handler",
-      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/permission_handler-10.4.3",
+      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/permission_handler-10.4.5",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "permission_handler_android",
-      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/permission_handler_android-10.3.3",
+      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/permission_handler_android-10.3.5",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -429,7 +429,7 @@
     },
     {
       "name": "permission_handler_platform_interface",
-      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/permission_handler_platform_interface-3.11.3",
+      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/permission_handler_platform_interface-3.11.5",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -447,9 +447,9 @@
     },
     {
       "name": "plugin_platform_interface",
-      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.5",
+      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.6",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.19"
     },
     {
       "name": "pool",
@@ -585,9 +585,9 @@
     },
     {
       "name": "xdg_directories",
-      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/xdg_directories-1.0.2",
+      "rootUri": "file:///Users/cuong-mac/.pub-cache/hosted/pub.dev/xdg_directories-1.0.3",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.19"
     },
     {
       "name": "xml",
@@ -608,7 +608,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-09-06T10:33:28.181132Z",
+  "generated": "2023-09-06T14:48:45.298092Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }

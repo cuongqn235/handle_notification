@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -13,6 +12,51 @@ part 'push_notification_state.dart';
 part 'push_notification_event.dart';
 part 'push_notification_bloc.freezed.dart';
 
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  showFlutterNotification(message,
+      flutterLocalNotificationsPlugin: FlutterLocalNotificationsPlugin());
+}
+
+NotificationDetails notificationDefault(String title) =>
+    const NotificationDetails(
+      android: AndroidNotificationDetails(
+        'default_notification_channel_id',
+        'default',
+        icon: '@mipmap/ic_launcher',
+        priority: Priority.high,
+        importance: Importance.max,
+      ),
+      iOS: DarwinNotificationDetails(
+        presentSound: true,
+        presentAlert: true,
+      ),
+    );
+
+void showFlutterNotification(
+  RemoteMessage message, {
+  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+}) {
+  try {
+    debugPrint('Show local notification!!!');
+    flutterLocalNotificationsPlugin.show(
+        message.hashCode,
+        message.notification?.title,
+        message.notification?.body,
+        notificationDefault(message.notification?.title ?? '')
+        // payload: jsonEncode(
+        //   {
+        //     'title': message.notification?.title,
+        //     'content': message.notification?.body,
+        //   },),
+        );
+  } on Exception catch (e) {
+    print(
+      e,
+    );
+  }
+}
+
 class PushNotificationBloc
     extends Bloc<PushNotificationEvent, PushNotificationState> {
   PushNotificationBloc() : super(const PushNotificationState.initialization()) {
@@ -20,8 +64,7 @@ class PushNotificationBloc
     on<PushNotificationEventOnTap>(_onTap);
     on<PushNotificationEventOnReceived>(_onReceived);
   }
-  static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   FutureOr<void> _onStart(PushNotificationEventOnStart event,
       Emitter<PushNotificationState> emit) async {
@@ -46,8 +89,10 @@ class PushNotificationBloc
               )),
             ),
           );
-        } on Exception catch (e, trace) {
-          print(e);
+        } on Exception catch (e) {
+          if (kDebugMode) {
+            print(e);
+          }
         }
       },
     );
@@ -55,17 +100,25 @@ class PushNotificationBloc
     // Receive notification on forceground
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       debugPrint('New notification!');
-      showFlutterNotification(message);
+      flutterLocalNotificationsPlugin.show(
+        message.hashCode,
+        message.notification?.title,
+        message.notification?.body,
+        notificationDefault(message.notification?.title ?? ''),
+        payload: '',
+      );
     });
 
     // Receive notification on background and terminal
     // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
+    // Android
     await fcm.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
       sound: true,
     );
+
     if (Platform.isIOS) {
       await flutterLocalNotificationsPlugin
           .resolvePlatformSpecificImplementation<
@@ -79,13 +132,19 @@ class PushNotificationBloc
       await flutterLocalNotificationsPlugin
           .resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>()
-          ?.requestPermission();
+          ?.createNotificationChannel(const AndroidNotificationChannel(
+            'high_importance_channel', // id
+            'High Importance Notifications', // title
+            description:
+                'This channel is used for important notifications.', // description
+            importance: Importance.max,
+          ));
     }
 
     await Permission.notification.request();
   }
 
-  static Future<FlutterLocalNotificationsPlugin> setupFlutterNotifications({
+  Future<FlutterLocalNotificationsPlugin> setupFlutterNotifications({
     void Function(NotificationResponse)? onDidReceiveNotificationResponse,
     bool initWithChannel = true,
   }) async {
@@ -110,49 +169,6 @@ class PushNotificationBloc
     }
     return localNotificationsPlugin;
   }
-
-  @pragma('vm:entry-point')
-  static Future<void> _firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {
-    // showFlutterNotification(message);
-    // print("Handling a background message: ${message.messageId}");
-  }
-
-  static void showFlutterNotification(
-    RemoteMessage message,
-  ) {
-    try {
-      debugPrint('Show local notification!!!');
-      flutterLocalNotificationsPlugin.show(
-          message.hashCode,
-          message.notification?.title,
-          message.notification?.body,
-          notificationDefault(message.notification?.title ?? ''),
-          payload: jsonEncode({
-            'title': message.notification?.title,
-            'content': message.notification?.body,
-          }));
-    } on Exception catch (e) {
-      print(
-        e,
-      );
-    }
-  }
-
-  static NotificationDetails notificationDefault(String title) =>
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          'default_notification_channel_id',
-          'default',
-          icon: '@mipmap/ic_launcher',
-          priority: Priority.high,
-          importance: Importance.max,
-        ),
-        iOS: DarwinNotificationDetails(
-          presentSound: true,
-          presentAlert: true,
-        ),
-      );
 
   FutureOr<void> _onTap(
       PushNotificationEventOnTap event, Emitter<PushNotificationState> emit) {
