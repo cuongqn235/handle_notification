@@ -51,9 +51,11 @@ void showFlutterNotification(
         //   },),
         );
   } on Exception catch (e) {
-    print(
-      e,
-    );
+    if (kDebugMode) {
+      print(
+        e,
+      );
+    }
   }
 }
 
